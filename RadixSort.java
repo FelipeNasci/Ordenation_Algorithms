@@ -16,7 +16,10 @@ public class RadixSort implements Sort {
 
     private void radixSort(int[] array) {
 
-        int[][] temp = new int[10][array.length];
+        //A contagem nao passara de 9
+        //Colunas de acordo com o nuumero de valores do vetor desordenado
+        
+        int[][] temp = new int[10][array.length + 1];
         int max = max(array);       //obtem o maior numero do array
         int aux, digit;
 
