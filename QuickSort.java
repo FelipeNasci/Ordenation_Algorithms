@@ -1,78 +1,56 @@
 
-
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class QuickSort implements Sort{
 
     @Override
-    public int[] sort(int[] array) {
-        try {
-            quickSort(array);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(QuickSort.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return array;
-    }
-    
-    private void quickSort(int[] array) throws InterruptedException {
-        partition(array, 0, array.length);
-    }
-//**************************    QuickSort  **************************
-    
-    private void partition(int[] array, int inicio, int tamanho) {
+    public int[] sort(int vetor[]) {
 
-        int posPivot = inicio + tamanho - 1;
-
-        if (!valido(array, posPivot)) 
-            return;
+        System.err.println("\t** QuickSort **");
         
-        int pivot = array[posPivot];
-        int fim = inicio + tamanho - 2;
+        int inicio = 0;
+        int fim = vetor.length - 1;
 
-        if (tamanho <= 2) {
-            if (array[inicio] > pivot) 
-                troca(array, inicio, posPivot);
-            return;
-        }
-
-        while (inicio < fim) {
-            inicio = dir(array, inicio, pivot);
-            fim = esq(array, fim, pivot);
-
-            if (inicio < fim)
-                troca(array, inicio, fim);
-        }
-        troca(array, inicio, posPivot);
-
-        partition(array, 0, inicio);
-        partition(array, inicio + 1, tamanho - inicio - 1);
+        quicksort(vetor, inicio, fim);
+        return vetor;
     }
 
-    private int dir(int[] array, int i, int pivot) {
-        while (array[i] < pivot && i < array.length) {
-            i++;
+    public void quicksort(int[] vetor, int inicio, int fim) {
+
+        if (inicio < fim) {
+            int meio = particao(vetor, inicio, fim);
+
+            quicksort(vetor, inicio, meio - 1);
+            quicksort(vetor, meio + 1, fim);
+
         }
+
+    }
+
+    public int particao(int[] vetor, int inicio, int fim) {
+
+        int pivor = vetor[inicio];
+        int i = inicio, j = fim;
+
+        while(i < j){
+
+            /****
+             * 
+            */
+            while (vetor[j] > pivor && j >= 0) j--;
+            if(vetor[j] < pivor) vetor[i] = vetor[j];
+            
+            /****
+             * 
+            */
+            while(vetor[i] <= pivor && i < j ) i++;
+            if(vetor[i] > pivor) vetor[j] = vetor[i];
+
+        }
+        
+        /****
+        * 
+        */
+        vetor[i] = pivor;
         return i;
     }
 
-    private int esq(int[] array, int i, int pivot) {
-        while (array[i] >= pivot && i > 0) {
-            i--;
-        }
-        return i;
-    }
-
-    private void troca(int[] array, int i, int j) {
-        int aux = array[i];
-        array[i] = array[j];
-        array[j] = aux;
-    }
-
-    public boolean valido(int[] array, int posPivot){
-        return posPivot < 0 || posPivot > array.length;
-    }
-    
-//**************************    Fim QuickSort   **************************
 }

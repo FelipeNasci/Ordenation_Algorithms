@@ -2,7 +2,7 @@
 import java.util.Random;
 
 public class AlgoritmosOrdenacao {
-
+/*
     public static void main(String args[]) {
 
         int[] vetor = new int[5];
@@ -19,7 +19,7 @@ public class AlgoritmosOrdenacao {
 
         exibiVetor(vetor);
     }
-
+*/
     public static int[] numAleatorio(int vetor[]) {
 
         Random gerador = new Random();

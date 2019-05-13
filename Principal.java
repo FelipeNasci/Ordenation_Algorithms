@@ -7,9 +7,8 @@ public class Principal {
 
         Sort sort;
         
-        sort = new RadixSort();
+        sort = new QuickSort();
         sort.sort(vetor);
-        System.out.println("\nRadixSort");
         show(vetor);
 
     }
