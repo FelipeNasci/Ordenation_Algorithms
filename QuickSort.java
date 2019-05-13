@@ -32,23 +32,28 @@ public class QuickSort implements Sort{
 
         while(i < j){
 
-            /****
+            /*******************************************************************
+             * j será decrementado enqanto o elemento em sua posicao
+             * for maior que o pivot
              * 
-            */
+             * Caso o elemento seja menor, o mesmo é posto na posição de i
+             * 
+             * O if é um controle para que i ou j ultrapassem os limites do vetor
+            *******************************************************************/
+            
             while (vetor[j] > pivor && j >= 0) j--;
             if(vetor[j] < pivor) vetor[i] = vetor[j];
-            
-            /****
-             * 
-            */
+
             while(vetor[i] <= pivor && i < j ) i++;
             if(vetor[i] > pivor) vetor[j] = vetor[i];
 
         }
         
-        /****
-        * 
-        */
+        /***********************************************************************
+        * 'i' e 'j' estão na mesma posição, o pivor estará em seu devido lugar
+        * retorno de i indica a partição do array
+        **********************************************************************/
+        
         vetor[i] = pivor;
         return i;
     }
